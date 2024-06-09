@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import { FaDiscord } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -46,7 +47,10 @@ const Footer = () => {
           Copyright © 2024 Toingg <br />
           Inc. All rights reserved.
         </p>
-        <p className="text-sm">Join Our Community</p>
+        <div className="text-sm flex items-center space-x-2">
+          <p>Join Our Community </p>
+          <FaDiscord className="text-xl" />
+        </div>
       </div>
     </div>
   );
