@@ -1,35 +1,15 @@
 "use client";
 
-import { useEffect, useRef, useState, RefObject } from "react";
+import { useState } from "react";
 import { TiThMenu } from "react-icons/ti";
 import { HiMiniArrowLongRight } from "react-icons/hi2";
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState<boolean>(false);
-  const menuRef: RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
 
   function toggleMenu() {
     setOpenMenu(!openMenu);
   }
-
-  const handleOutsideClick = (event: MouseEvent) => {
-    if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-      setOpenMenu(false);
-    }
-  };
-
-  useEffect(() => {
-    if (openMenu) {
-      document.addEventListener("click", handleOutsideClick);
-    } else {
-      document.removeEventListener("click", handleOutsideClick);
-    }
-
-    // Cleanup event listeners on component unmount or when openMenu changes
-    return () => {
-      document.removeEventListener("click", handleOutsideClick);
-    };
-  }, [openMenu]);
 
   return (
     <div className="w-full">
@@ -44,7 +24,7 @@ const Navbar = () => {
           <TiThMenu />
         </button>
       </div>
-      {openMenu && <Menu ref={menuRef} />}
+      {openMenu && <Menu />}
     </div>
   );
 };
